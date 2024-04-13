@@ -21,7 +21,9 @@ fn main() {
     string("red".to_string());
     string(String::from("hi"));
     string("rust is fun!".to_owned());
-    string_slice("nice weather".into());//这个猜的
+    //.into()会将左操作数转换成对应的类型，类型可以显式指定也可以由编译器推断
+    //故此处用 string(..) 或 string_slice(..) 均可
+    string("nice weather".into());
     string(format!("Interpolation {}", "Station"));
     string_slice(&String::from("abc")[0..1]);
     string_slice("  hello there ".trim());
