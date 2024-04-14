@@ -60,6 +60,8 @@ mod tests {
             ("foo".into(), Command::Append(1)),
             ("bar".into(), Command::Append(5)),
         ]);
+        //自动解引用？
+        //比较运算符也可以自动解引用，但要求两边操作数的类型相同 
         assert_eq!(output[0], "HELLO");
         assert_eq!(output[1], "all roads lead to rome!");
         assert_eq!(output[2], "foobar");
