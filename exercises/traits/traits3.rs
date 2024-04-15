@@ -8,10 +8,12 @@
 // Execute `rustlings hint traits3` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 pub trait Licensed {
-    fn licensing_info(&self) -> String;
+    fn licensing_info(&self) -> String{
+        "Some information".to_string()
+    }
 }
 
 struct SomeSoftware {
@@ -21,7 +23,7 @@ struct SomeSoftware {
 struct OtherSoftware {
     version_number: String,
 }
-
+//通过编写特型方法的默认实现使得impl Licensed for ... 时不用再实现
 impl Licensed for SomeSoftware {} // Don't edit this line
 impl Licensed for OtherSoftware {} // Don't edit this line
 
