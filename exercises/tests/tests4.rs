@@ -5,7 +5,7 @@
 // Execute `rustlings hint tests4` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 struct Rectangle {
     width: i32,
@@ -34,13 +34,17 @@ mod tests {
         assert_eq!(rect.height, 20); // check height
     }
 
+    //为测试函数添加#[should_panic]属性检查是否panic:
+    //该属性在函数中的代码panic时会通过，没有panic时失败
     #[test]
+    #[should_panic]
     fn negative_width() {
         // This test should check if program panics when we try to create rectangle with negative width
         let _rect = Rectangle::new(-10, 10);
     }
 
     #[test]
+    #[should_panic]
     fn negative_height() {
         // This test should check if program panics when we try to create rectangle with negative height
         let _rect = Rectangle::new(10, -10);
