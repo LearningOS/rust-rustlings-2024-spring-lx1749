@@ -10,12 +10,14 @@
 // Execute `rustlings hint tests1` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 #[cfg(test)]
 mod tests {
     #[test]
     fn you_can_assert() {
-        assert!();
+        //assert!()中要求放一个bool表达式，否则将编译错误
+        //若表达式的值为false则会在运行期引发panic,为true则什么都不会发生
+        assert!(true);
     }
 }
