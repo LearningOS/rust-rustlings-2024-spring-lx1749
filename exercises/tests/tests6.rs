@@ -7,7 +7,7 @@
 // Execute `rustlings hint tests6` or use the `hint` watch subcommand for a
 // hint.
 
-// I AM NOT DONE
+
 
 struct Foo {
     a: u128,
@@ -20,8 +20,10 @@ struct Foo {
 unsafe fn raw_pointer_to_box(ptr: *mut Foo) -> Box<Foo> {
     // SAFETY: The `ptr` contains an owned box of `Foo` by contract. We
     // simply reconstruct the box from that pointer.
-    let mut ret: Box<Foo> = unsafe { ??? };
-    todo!("The rest of the code goes here")
+    // .运算符的自动解引用仅针对引用而言，不能对裸指针自动解引用
+    (*ptr).b = Some("hello".to_string());
+    let mut ret: Box<Foo> =  Box::from_raw(ptr) ;
+    ret
 }
 
 #[cfg(test)]
