@@ -3,10 +3,43 @@
 	This problem requires you to implement a sorting algorithm
 	you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
-// I AM NOT DONE
 
-fn sort<T>(array: &mut [T]){
-	//TODO
+
+fn sort<T>(array: &mut [T])
+where 
+    T: std::cmp::PartialOrd + std::marker::Copy
+{
+	if array.len() == 1 {
+        return 
+    }
+    let mid = array.len() / 2;
+    sort(&mut array[..mid]);
+    sort(&mut array[mid..]);
+    let mut temp: Vec<T> = Vec::new();
+    let mut i = 0;
+    let mut j = mid;
+    while i < mid && j < array.len(){
+        if array[i] < array[j] {
+            temp.push(array[i]);
+            i += 1;
+        } else {
+            temp.push(array[j]);
+            j += 1;
+        }
+    }
+    while i < mid {
+        temp.push(array[i]);
+        i += 1;
+    }
+    while j < array.len() {
+        temp.push(array[j]);
+            j += 1;
+    }
+    for i in 0..array.len() {
+        array[i] = temp[i];
+    }
+    
+    
 }
 #[cfg(test)]
 mod tests {
