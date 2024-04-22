@@ -2,7 +2,7 @@
 	heap
 	This question requires you to implement a binary heap function
 */
-// I AM NOT DONE
+
 
 use std::cmp::Ord;
 use std::default::Default;
@@ -37,9 +37,33 @@ where
     }
 
     pub fn add(&mut self, value: T) {
-        //TODO
+        self.count += 1;
+        self.items.push(value);
+        self.up(self.count);
     }
-
+    fn up(&mut self, mut idx: usize) {
+        while idx > 1 {
+            let parent_idx = self.parent_idx(idx);
+            if (self.comparator)(&self.items[parent_idx], &self.items[idx]) {
+                break;
+            } else {
+                self.items.swap(parent_idx, idx);
+                idx = parent_idx;
+            }
+        }
+    }
+    fn down(&mut self, mut idx: usize) {
+        while self.children_present(idx) {
+            let least = self.smallest_child_idx(idx);
+            if (self.comparator)(&self.items[idx], &self.items[least]) {
+                break;
+            } else {
+                self.items.swap(least, idx);
+                idx = least;
+            }
+        }
+        
+    }
     fn parent_idx(&self, idx: usize) -> usize {
         idx / 2
     }
@@ -57,8 +81,15 @@ where
     }
 
     fn smallest_child_idx(&self, idx: usize) -> usize {
-        //TODO
-		0
+        let l = self.left_child_idx(idx);
+        let r = self.right_child_idx(idx);
+        if r > self.len() {
+            l
+        } else if (self.comparator)(&self.items[l], &self.items[r]) {
+            l
+        } else {
+            r
+        }
     }
 }
 
@@ -84,8 +115,14 @@ where
     type Item = T;
 
     fn next(&mut self) -> Option<T> {
-        //TODO
-		None
+        if self.len() == 0 {
+            None
+        } else {
+            let v = self.items.swap_remove(1);
+            self.count -= 1;
+            self.down(1);
+            Some(v)
+        }
     }
 }
 
